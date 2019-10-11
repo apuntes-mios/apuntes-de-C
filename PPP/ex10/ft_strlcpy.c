@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 20:45:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/11 13:54:05 by vde-dios         ###   ########.fr       */
+/*   Created: 2019/10/11 12:13:02 by vde-dios          #+#    #+#             */
+/*   Updated: 2019/10/11 12:38:45 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int		ft_str_is_printable(char *str)
+unsigned int ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int l;
+	unsigned int i;
+	unsigned int j;
 
-	l = 0;
-	if(str[l] == '\0')
-		return 1;
-	while(str[l])
+	i = 0;
+	j = 0;
+	while(src[i])
+		i++ ;
+	while(j < size)
 	{
-		if(str[l] < 31 || str[l] > 127)
-			return 0;
-		l++ ;
+		if(j < size -1)
+			dest[j] = src[j];
+		else
+			dest[j] = '\0';
+		j++ ;
 	}
-	return 1;
+	return i;
 }
