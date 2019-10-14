@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 20:29:23 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/10 20:32:51 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/14 22:04:10 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@ int		ft_str_is_numeric(char *str)
 	int l;
 
 	l = 0;
-	if(str[l] == '\0')
-		return 1;
-	while(str[l])
+	if (str[l] == '\0')
+		return (1);
+	while (str[l])
 	{
-		if(str[l] < '0' || str[l] > '9')
-			return 0;
-		l++ ;
+		if (str[l] < '0' || str[l] > '9')
+			return (0);
+		l++;
 	}
-	return 1;
+	return (1);
 }

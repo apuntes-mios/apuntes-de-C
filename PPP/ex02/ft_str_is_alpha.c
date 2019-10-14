@@ -6,22 +6,22 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 19:44:01 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/10 20:28:14 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/14 22:01:13 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
+
 int		ft_str_is_alpha(char *str)
 {
 	int l;
 
-	l = 0;	
-	if(str[l] == '\0')
-		return 1;
-	while(str[l])
+	l = 0;
+	if (str[l] == '\0')
+		return (1);
+	while (str[l])
 	{
-		if((str[l] < 'A' || str[l] > 'Z') && (str[l] < 'a' || str[l] > 'z'))
-			return 0;
-		l++ ;
+		if ((str[l] < 'A' || str[l] > 'Z') && (str[l] < 'a' || str[l] > 'z'))
+			return (0);
+		l++;
 	}
-	return 1;
+	return (1);
 }

@@ -6,23 +6,22 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 12:45:53 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/10 19:30:45 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/14 21:50:40 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	char *s;
-	int i;
+	char	*s;
+	int		i;
 
-	s = dest;
+	s = src;
 	i = 0;
-    while(src[i])
-    {
-        dest[i] = src[i];
+	while (src[i])
+	{
+		dest[i] = src[i];
 		i++;
-    }
-    dest[i] = '\0';
-    return s;
+	}
+	dest[i] = '\0';
+	return (s);
 }
