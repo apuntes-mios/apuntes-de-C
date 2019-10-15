@@ -6,22 +6,22 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 20:45:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/11 13:54:05 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/15 14:12:08 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_str_is_printable(char *str)
+int	ft_str_is_printable(char *str)
 {
 	int l;
 
 	l = 0;
-	if(str[l] == '\0')
-		return 1;
-	while(str[l])
+	if (str[l] == '\0')
+		return (1);
+	while (str[l])
 	{
-		if(str[l] < 31 || str[l] > 127)
-			return 0;
-		l++ ;
+		if (str[l] < 31 || str[l] > 127)
+			return (0);
+		l++;
 	}
-	return 1;
+	return (1);
 }

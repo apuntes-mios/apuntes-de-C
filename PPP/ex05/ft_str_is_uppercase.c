@@ -6,21 +6,22 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 20:38:54 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/10 20:40:42 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/15 14:10:40 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int		ft_str_is_uppercase(char *str)
+
+int	ft_str_is_uppercase(char *str)
 {
 	int l;
 
 	l = 0;
-	if(str[l] == '\0')
-		return 1;
-	while(str[l])
+	if (str[l] == '\0')
+		return (1);
+	while (str[l])
 	{
-		if(str[l] < 'A' || str[l] > 'Z')
-			return 0;
-		l++ ;
+		if (str[l] < 'A' || str[l] > 'Z')
+			return (0);
+		l++;
 	}
-	return 1;
+	return (1);
 }
