@@ -11,67 +11,78 @@
 /* ************************************************************************** */
 #include<stdlib.h>
 #include<stdio.h>
-
+#include<unistd.h>
 
 void	ft_signo(char str, int *zona, int *signo, int *boom)
 {
-	if(str == '-' || str == '+')
-		if (*signo < 2)
-			*signo = *signo + 1;
-		else
-			*signo = 0;
-	else
+	if(*zona < 2)
 	{
-		*zona = 2; 
-		*boom = 1;
+		*boom = 0;
+		*zona = 1;
+		if(str == '-' || str == '+')
+			if (*signo < 2)
+			*signo = *signo + 1;
+			else
+				*signo = 0;
+		else
+		{
+			*zona = 2; 
+			*boom = 1;
+		}
 	}
 }
 
-void	ft_isspace(char str, char *zona, char *boom)
+void	ft_isspace(char str, int *zona, int *boom)
 {
-	if (!(str == '\t' || str == '\n' || str == '\v'
+	if(*zona < 1)
+	{
+		if (!(str == '\t' || str == '\n' || str == '\v'
 			|| str == '\f' || str == '\r' || str == ' '))
-		*boom = 1;
-	else 
-		*boom = 0;
+			*boom = 1;
+		else 
+			*boom = 0;
+	}
 }
 
 void ft_number(char str, int *zona, int *signo, int *boom)
 {
-	if (!(str >= '0' && str <= '9'))
-		*boom = 1;
-	else
-	{ 
-		if (*signo == 1)
-		{
-			write( 1, "-", 1);
-			*signo = 0;
-		}
-		else
-			write(1, &str, 1);
+	if(*zona < 3)
+	{
 		*boom = 0;
+		*zona = 2;
+		if (!(str >= '0' && str <= '9'))
+			*boom = 1;
+		else
+		{ 
+			if (*signo == 1)
+			{
+				write( 1, "-", 1);
+				*signo = 0;
+			}
+			else
+				write(1, &str, 1);
+			*boom = 0;
+		}
 	}
 }
 
-int ft_atoi(char *str)
+void ft_atoi(char *str) //cambiar a return int
 {
 	int i;
 	int zona;
 	int boom;
-	
+	int signo;	
+
 	boom = 0;
 	zona = 0;
 	signo = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (zona < 1)
-			ft_isspace(str[i], &zona, &boom);
-		else if (zona < 2)
-			ft_signo(str[i], &zona, &signo, &boom);
-		else if (zona < 3)
-			ft_number(str[i], &zona, &signo, &boom)
-		else if (boom == 1)
+		ft_isspace(str[i], &zona, &boom);
+		ft_signo(str[i], &zona, &signo, &boom);
+		ft_number(str[i], &zona, &signo, &boom);
+		 if (boom == 1)
 			break;
 		i++;
 	}
@@ -79,7 +90,7 @@ int ft_atoi(char *str)
 
 int main()
 {
-	char str[] = "--+-12122";
+	char str[] = " --+-12122";
 	int a;
 
 	ft_atoi(str);
