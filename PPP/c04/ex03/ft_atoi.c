@@ -6,95 +6,85 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 21:57:37 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/10/17 20:50:11 by vde-dios         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:07:08 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdlib.h>
 #include<stdio.h>
 #include<unistd.h>
 
-void	ft_signo(char str, int *zona, int *signo, int *boom)
+void	ft_isspace(char str, int *zona, int *i)
 {
-	if(*zona < 2)
-	{
-		*boom = 0;
-		*zona = 1;
-		if(str == '-' || str == '+')
-			if (*signo < 2)
-			*signo = *signo + 1;
-			else
-				*signo = 0;
-		else
-		{
-			*zona = 2; 
-			*boom = 1;
-		}
-	}
-}
-
-void	ft_isspace(char str, int *zona, int *boom)
-{
-	if(*zona < 1)
-	{
 		if (!(str == '\t' || str == '\n' || str == '\v'
 			|| str == '\f' || str == '\r' || str == ' '))
-			*boom = 1;
-		else 
-			*boom = 0;
-	}
-}
-
-void ft_number(char str, int *zona, int *signo, int *boom)
-{
-	if(*zona < 3)
-	{
-		*boom = 0;
-		*zona = 2;
-		if (!(str >= '0' && str <= '9'))
-			*boom = 1;
+			*zona = 2;
 		else
-		{ 
-			if (*signo == 1)
-			{
-				write( 1, "-", 1);
-				*signo = 0;
-			}
-			else
-				write(1, &str, 1);
-			*boom = 0;
-		}
-	}
+			*i = *i + 1;
 }
 
-void ft_atoi(char *str) //cambiar a return int
+void	ft_signo(char str, int *zona, int *signo, int *i)
+{
+		if(str == '-' || str == '+')
+		{
+			if (*signo < 1 && str == '-')
+				*signo = *signo + 1;
+			else if(str == '-')
+				*signo = 0;
+			*i = *i + 1;
+		}
+		else
+			*zona = 3; 
+}
+
+int	ft_number(char str, int *zona, int *i)
+{
+		if (str < '0' || str > '9')
+		{
+			*zona = 4;
+			return 0;
+		}
+		else
+		{
+			*i = *i + 1;
+			return str - '0';
+		}
+}
+
+int	ft_atoi(char *str) //cambiar a return int
 {
 	int i;
 	int zona;
-	int boom;
-	int signo;	
+	int signo;
+	int num; 
 
-	boom = 0;
-	zona = 0;
+	num = 0;
+	zona = 1;
 	signo = 0;
 	i = 0;
-	while (str[i])
+	while (str[i]) 
 	{
-		ft_isspace(str[i], &zona, &boom);
-		ft_signo(str[i], &zona, &signo, &boom);
-		ft_number(str[i], &zona, &signo, &boom);
-		 if (boom == 1)
+		if (zona == 1)
+			ft_isspace(str[i], &zona, &i);
+		else if (zona == 2)
+			ft_signo(str[i], &zona, &signo, &i);
+		else if (zona == 3)
+			num = num*10 + ft_number(str[i], &zona, &i);
+		else
 			break;
-		i++;
 	}
+	if (signo == 1)
+		return -num;
+	else
+		return num;
 }
 
 int main()
 {
-	char str[] = " --+-12122";
+	char str[]= "++--- 012345";
 	int a;
 
-	ft_atoi(str);
+//	ft_atoi(str);
 //	a= atoi(str);
-//	printf("%d", a);
+	printf("%d", ft_atoi(str));
 	return 0;
 }
